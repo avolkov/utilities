@@ -1,0 +1,2 @@
+#permanent leases file. Clents identified by client name.
+ifconfig-push 10.52.11.80 10.52.11.0
