@@ -1,0 +1,25 @@
+#!/bin/bash
+
+mode=rw
+
+if [ "$0" == "/usr/local/bin/ro" ]
+then
+        mode=ro
+fi
+
+if [ $UID -ne 0 ]
+then
+        echo "This program must executed as root" > /dev/stderr
+        exit 1
+fi
+
+/bin/mount / -o remount,$mode
+
+if [ $? -eq 0 ]
+then
+        echo "Root filesystem mounted in $mode mode"
+        exit 0
+else
+        echo "Failed to remount root filesystem"
+fi
+

@@ -1,0 +1,11 @@
+# Minimalistic default options file for DSL/PPPoE connections
+
+noipdefault
+defaultroute
+replacedefaultroute
+hide-password
+noauth
+persist
+plugin rp-pppoe.so eth1
+user "username@look.ca"
+usepeerdns

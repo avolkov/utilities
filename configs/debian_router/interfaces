@@ -1,0 +1,30 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+        pre-up /sbin/iptables-restore /etc/network/iptable-rules
+
+# The primary network interface
+auto eth0
+iface eth0 inet manual
+
+auto wlan0
+iface wlan0 inet manual
+
+auto eth1
+iface eth1 inet manual
+
+auto dsl-provider
+iface dsl-provider inet ppp
+        pre-up /sbin/ifconfig eth1 up # line maintained by pppoeconf
+        provider dsl-provider
+
+auto br0
+iface br0 inet static
+        address 192.168.1.1
+        network 192.168.1.0
+        netmask 255.255.255.0
+        broadcast 192.168.1.255
+        bridge-ports eth0 wlan0

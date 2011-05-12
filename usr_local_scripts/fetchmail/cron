@@ -1,0 +1,2 @@
+#Check for new mail every minute
+*/1     *       *       *       *       /usr/local/bin/retrieve_pop3_mail.sh /usr/local/etc/pop3_users 1>/dev/null 2>&1

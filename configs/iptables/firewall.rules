@@ -1,0 +1,31 @@
+#Set default policy
+iptables --policy INPUT DROP
+iptables --policy OUTPUT DROP
+iptables --policy FORWARD DROP
+
+#Allow loopback interface
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+iptables -A FORWARD -i lo -j ACCEPT
+iptables -A FORWARD -o lo -j ACCEPT
+
+#SSH
+iptables -A INPUT --source 172.16.200.0/24 -p TCP --dport 22 --sport 1024:65535 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT --destination 172.16.200.0/24 -p TCP --sport 22 --dport 1024:65535 -m state --state ESTABLISHED -j ACCEPT
+
+#HTTP
+iptables -A INPUT -p TCP --dport 80 --sport 1024:65535 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p TCP --sport 80 --dport 1024:65535 -m state --state ESTABLISHED -j ACCEPT
+
+#Updates from debian.yorku.ca via http
+iptables -A OUTPUT -p TCP --destination 130.63.236.141 --dport 80 --sport 1024:65535 -j ACCEPT
+iptables -A INPUT -p TCP --source 130.63.236.141 --sport 80 --dport 1024:65535 -j ACCEPT
+
+#DNS CLIENT REQUESTS
+iptables -A OUTPUT -p UDP --dport 53 --sport 1024:65535 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT -p UDP --sport 53 --dport  1024:65535 -m state --state ESTABLISHED -j ACCEPT
+iptables -A INPUT -p TCP --sport 53 --dport  1024:65535 -m state --state NEW,ESTABLISHED -j ACCEPT
+
+#NTP
+iptables -A OUTPUT -p UDP --dport 123 --sport 123  -j ACCEPT
+iptables -A INPUT -p UDP --sport 123 --dport 123 -j ACCEPT

@@ -1,0 +1,7 @@
+#To start server
+
+$ krfb --nodialog --display :0
+
+#To connect
+
+$ krdc <servername>:5900

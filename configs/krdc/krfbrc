@@ -1,0 +1,10 @@
+[Invitations]
+invitation_num=0
+
+[Notification Messages]
+systemtrayquitDesktop Sharing=false
+
+[Security]
+allowUninvitedConnections=true
+askOnConnect=false
+uninvitedConnectionPassword=<SetPasswordHere>

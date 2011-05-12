@@ -1,0 +1,31 @@
+
+krfb: cannot connect to X server
+You should try:
+Code:
+
+krfb --display :0
+
+and then connect to it, but dont forget to set the ~/.kde/share/config/krfbrc file with following content:
+
+Quote:
+[Invitations]
+invitation_num=0
+
+[Notification Messages]
+systemtrayquitDesktop Sharing=false
+
+[Security]
+allowUninvitedConnections=true
+askOnConnect=false
+uninvitedConnectionPassword=<SetPasswordHere>
+
+Then you can try to connect with:
+
+Quote:
+krdc localhost:10000
+if you did a port forwarding like
+
+Quote:
+ssh -p22 -L10000:192.168.2.92:5900 sshUser@sampleSite.dyndns.org
+
+  	

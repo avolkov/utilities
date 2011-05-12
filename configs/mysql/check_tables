@@ -1,0 +1,60 @@
+#!/bin/bash
+
+verbose=no
+mailto="alex@example.com"
+dbname=''
+
+if [ "$1" == "" ]
+then
+	echo "Usage: check_tables db_name [-v]"
+	echo "-v - verbose output"
+	exit 1
+fi
+
+if [ "$2" == "-v" ]
+then
+	verbose=yes
+fi
+
+table_list=$(mysql -u root $dbname -e "show tables" | grep -v "Tables_in_${dbname}" )
+
+corrupt_tables=""
+message_report=""
+for k in $table_list
+do
+	message=$(mysql -u root $dbname -e "check table $k EXTENDED")
+	table=$(echo $message | awk '{print $5}')
+	op=$(echo $message | awk '{print $6}')
+	msg_type=$(echo $message | awk '{print $7}')
+	text=$(echo $message | awk '{print $8}')
+	
+	echo $text | grep -q "^OK$"
+	if [ $? -eq 0 ]
+	then
+		[ "$verbose" == "yes" ] && echo "$table is $text"
+	else
+		corrupt_tables="$corrupt_tables $table"
+		message_report="$message_report\n$table $op $msg_type $text"
+		[ "$verbose" == "yes" ] && echo "$table crashed, Error message: $text"
+	fi
+done
+
+if [ "$corrupt_tables" == "" ]
+then
+	[ "$verbose" == "yes" ] && echo "No corrupt tables found"
+else
+	[ "$verbose" == "yes" ] && echo "Found corrupt tables: $corrupt_tables"
+	
+	/usr/bin/mailx -s "Corrupt tables found" $mailto <<HEREDOC
+The following corrupt tables were found: $corrupt_tables
+	
+***************************************
+Error Messages:
+***************************************
+$message_report
+***************************************
+
+HEREDOC
+
+fi
+
