@@ -1,0 +1,18 @@
+{
+	"installed_packages":
+	[
+		"CSSLint",
+		"Djaneiro",
+		"Git",
+		"JsFormat",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-csslint",
+		"SublimeLinter-flake8",
+		"SublimeLinter-jshint",
+		"SublimeLinter-pep257",
+		"SublimeLinter-shellcheck",
+		"SublimePythonIDE",
+		"TernJS"
+	]
+}

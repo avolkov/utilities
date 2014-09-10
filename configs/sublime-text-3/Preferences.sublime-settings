@@ -1,0 +1,41 @@
+{
+	"color_scheme": "Packages/User/Cobalt (SL).tmTheme",
+	"detect_indentation": false,
+	"detect_slow_plugins": false,
+	"file_exclude_patterns":
+	[
+		".*",
+		"*.pyc",
+		"*.pyo",
+		"*.exe",
+		"*.dll",
+		"*.obj",
+		"*.o",
+		"*.a",
+		"*.lib",
+		"*.so",
+		"*.dylib",
+		"*.ncb",
+		"*.sdf",
+		"*.suo",
+		"*.pdb",
+		"*.idb",
+		".DS_Store",
+		"*.class",
+		"*.psd",
+		"*.db"
+	],
+	"font_size": 11,
+	"ignored_packages":
+	[
+		"Vintage",
+		"SideBarEnhancements"
+	],
+	"rulers":
+	[
+		80
+	],
+	"translate_tabs_to_spaces": true,
+	"trim_automatic_white_space": true,
+	"trim_trailing_white_space_on_save": true
+}
