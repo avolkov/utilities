@@ -1,12 +1,15 @@
 #!/bin/bash
 # This hook is run after every virtualenv is activated.
 
+BUILD_PATH='buildout.python'
+
 PYTHON_VERSION=$((python -V) 2>&1)
 PYTHON_VERSION=$( echo $PYTHON_VERSION | awk '{print $2}')
 PYTHON_VERSION=${PYTHON_VERSION:0:3}
-test_path=${HOME}/buildout.python/parts/opt/include/python${PYTHON_VERSION}/
+
+test_path=${HOME}/${BUILD_PATH}/parts/opt/include/python${PYTHON_VERSION}/
 if [ ! -d ${test_path} ]
 then
-    test_path=${HOME}/buildout.python/parts/opt/include/python${PYTHON_VERSION}m/
+    test_path=${HOME}/${BUILD_PATH}/parts/opt/include/python${PYTHON_VERSION}m/
 fi
 export C_INCLUDE_PATH=${test_path}
