@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ${HOME}/data/radio
+nohup /usr/bin/streamripper http://playerservices.streamtheworld.com/pls/CBC_R2_TOR_H.pls \
+-a $(date +%d-%m-%Y)-the-signal.mp3 -s -l 7200 &
