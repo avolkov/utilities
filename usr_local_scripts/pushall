@@ -3,3 +3,4 @@
 
 git remote | xargs git remote prune
 git remote | xargs -L1 git push  --all
+git remote | xargs -L1 git push --tag
