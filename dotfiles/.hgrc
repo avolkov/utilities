@@ -1,0 +1,60 @@
+[default]
+# this detects file renames if the files are 100% the same
+addremove = --similarity 100
+
+[ui]
+username = Alex Volkov <avolkov@beanfield.com>
+verbose = True
+
+[extensions]
+shelve=
+
+record=
+
+hgk=/usr/lib/python2.7/dist-packages/hgext/hgk.py
+
+#hgattic=/usr/local/lib/attic.py
+
+hgext.fetch=
+#colourizes the output of hg commands like diff and log
+hgext.color=
+#uses `more` for long output
+hgext.pager=
+# Convert allows converting other repositories to Mercurial
+hgext.convert=
+# Churn allows viewing some stats on the repository code
+hgext.churn=
+# Graphlog allows showing a graph on the command line with the command "hg glog"
+hgext.graphlog=
+# Mq allows queuing commits, but is also required for Hg Flow's autoshelve feature
+mq=
+# Hg Flow must be downloaded separately
+# See https://bitbucket.org/yujiewu/hgflow/wiki/Home
+flow = /usr/local/lib/hgflow.py
+
+[flow]
+# Auto shelve will automatically shelve uncommitted changes when switching branches
+autoshelve = true
+version_prefix = release-
+
+
+[pager]
+pager = LESS='FSRX' less
+# Ignore certain commands
+ignore = version, help, update, flow init
+
+[alias]
+# This theme must be downloaded separately.
+# hg clone http://bitbucket.org/sjl/mercurial-cli-templates/
+nlog = log --style=/full/path/to/map-cmdline.nlog
+
+[hooks]
+pretxncommit.pdb = hg export tip | if egrep -q '^\+.*pdb\.set_trace\(\).*$' ; then echo 'Remove pdb.set_trace() from changeset before committing.'; exit 1; fi
+precommit.add_issue_key = python:/usr/local/lib/hghooks.py:precommit_add_issue_key
+recommit.alembic_branches =  cd bean.models; if [[ -n $(alembic branches) ]]; then echo 'Resolve alembic branches before committing.'; exit 1; fi
+
+[hgview]
+
+displaydiffstats = yes
+diffbgcolor = white
+difffgcolor = black
