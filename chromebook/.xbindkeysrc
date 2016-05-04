@@ -1,0 +1,94 @@
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 0.1.3
+#
+# If you edit this, do not forget to uncomment any lines that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h 
+# The XK_ is not needed. 
+#
+# List of modifier (on my keyboard): 
+#   Control, Shift, Mod1 (Alt), Mod2 (NumLock), 
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll). 
+#
+# Another way to specifie a key is to use 'xev' and set the 
+# keycode with c:nnn or the modifier with m:nnn where nnn is 
+# the keycode or the state returned by xev 
+#
+# This file is created by xbindkey_config 
+# The structure is : 
+# # Remark 
+# "command" 
+# m:xxx + c:xxx 
+# Shift+... 
+
+
+
+
+keystate_numlock = enable
+keystate_scrolllock = enable
+keystate_capslock = enable
+
+
+
+#Backlight Down
+"xbacklight -dec 5"
+    m:0x8 + c:72
+    Alt + F6 
+
+#Backlight Up
+"xbacklight -inc 5"
+    m:0x8 + c:73
+    Alt + F7 
+
+#Mute
+"amixer set Master toggle"
+    m:0x8 + c:74
+    Alt + F8 
+
+#Decrease Volume
+"amixer set Master 2%- unmute"
+    m:0x8 + c:75
+    Alt + F9 
+
+#Increase Volume
+"amixer set Master 2%+ unmute"
+    m:0x8 + c:76
+    Alt + F10 
+
+#Delete
+"xvkbd -xsendevent -text '\[Delete]'"
+    m:0x8 + c:22
+    Alt + BackSpace 
+
+#End
+"xvkbd -xsendevent -text '\[End]'"
+    m:0x40 + c:114
+    Mod4 + Right 
+
+#Home
+"xvkbd -xsendevent -text '\[Home]'"
+    m:0x40 + c:113
+    Mod4 + Left 
+
+#Page Down
+"xvkbd -xsendevent -text '\[Page_Down]'"
+    m:0x40 + c:116
+    Mod4 + Down 
+
+#Page Up
+"xvkbd -xsendevent -text '\[Page_Up]'"
+    m:0x40 + c:111
+    Mod4 + Up 
+
+#Insert
+"xvkbd -xsendevent -text '\[Insert]'"
+    m0x40 + c:65
+    Mod4 + Space 
+
+#
+# End of xbindkeys configuration
