@@ -1,0 +1,14 @@
+{
+    "anaconda_linting": true,
+    "pep8_max_line_length": 99,
+    "pep8_ignore":
+    [
+    "E309", "E711", "E712", "E261", "E305", "E123"
+    ],
+    "anaconda_linter_mark_style": "outline",
+    "sublimelinter_fill_outlines": true,
+    "sublimelinter_gutter_marks": true,
+    "pyflakes": true,
+    "enable_signatures_tooltip": false,
+    "enable_docstrings_tooltip": false
+}
